@@ -1,0 +1,199 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pageHeader {
+  margin-bottom: 0.25rem;
+}
+
+/* ── Model status row ── */
+.modelStatusRow {
+  min-height: 32px;
+}
+
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.4rem 0.85rem;
+  border-radius: 99px;
+}
+
+.statusLoading {
+  background: var(--info-bg);
+  color: var(--info);
+  border: 1px solid var(--info-bd);
+}
+
+.statusReady {
+  background: var(--healthy-bg);
+  color: var(--healthy);
+  border: 1px solid var(--healthy-bd);
+}
+
+.statusError {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid var(--danger-bd);
+}
+
+.dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--healthy);
+  box-shadow: 0 0 0 2px var(--healthy-bg);
+  flex-shrink: 0;
+}
+
+/* ── Error box ── */
+.errorBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-bd);
+  border-radius: var(--radius-md);
+}
+
+.errorIcon {
+  width: 20px; height: 20px;
+  color: var(--danger);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.errorBody {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.errorMsg {
+  font-size: 0.875rem;
+  color: var(--danger);
+  line-height: 1.5;
+}
+
+.errorRetry {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--danger);
+  white-space: nowrap;
+  padding: 0.3rem 0.75rem;
+}
+
+.errorRetry:hover { background: var(--danger-bd); color: var(--danger); }
+
+/* ── Uploader card ── */
+.uploaderWrap {
+  overflow: hidden;
+}
+
+.previewPending {
+  border-top: 1px solid var(--ivory-dk);
+}
+
+.previewImg {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.previewHint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem;
+  font-size: 0.82rem;
+  color: var(--ink-lt);
+  background: var(--ivory);
+}
+
+/* ── Infer state ── */
+.inferCard {
+  position: relative;
+  overflow: hidden;
+  min-height: 240px;
+}
+
+.inferImg {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.55);
+}
+
+.inferOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.inferSpinner {
+  width: 52px; height: 52px;
+  background: rgba(26,61,43,0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inferLabel {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.inferFile {
+  font-size: 0.76rem;
+  color: rgba(255,255,255,0.7);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* ── Tips ── */
+.tips {
+  background: var(--white);
+  border: 1px solid var(--ivory-dk);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+}
+
+.tipList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tipItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.84rem;
+  color: var(--ink-lt);
+  line-height: 1.5;
+}
+
+.tipDot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--lime);
+  margin-top: 0.45rem;
+  flex-shrink: 0;
+}

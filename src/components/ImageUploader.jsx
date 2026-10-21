@@ -102,33 +102,58 @@ export default function ImageUploader({ onImageSelected, onError, disabled }) {
       onDrop={onDrop}
       role="button"
       tabIndex={disabled ? -1 : 0}
-      aria-label="Upload a leaf image"
+      aria-label="Upload a leaf image — drag and drop or click to browse"
       aria-disabled={disabled}
       onClick={() => !disabled && fileInputRef.current?.click()}
       onKeyDown={(e) => e.key === "Enter" && !disabled && fileInputRef.current?.click()}
     >
       <div className={styles.inner}>
-        <div className={styles.icon}>🌿</div>
+        {/* Upload icon */}
+        <div className={styles.uploadIcon} aria-hidden="true">
+          {dragging ? (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="16 16 12 12 8 16"/>
+              <line x1="12" y1="12" x2="12" y2="21"/>
+              <path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/>
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+          )}
+        </div>
+
         <p className={styles.mainText}>
-          {dragging ? "Drop the leaf image here" : "Drop a leaf photo or click to browse"}
+          {dragging ? "Drop to analyse" : "Drop a leaf photo here"}
         </p>
-        <p className={styles.subText}>JPG, PNG, WebP — up to 10 MB</p>
+        <p className={styles.subText}>or choose from your device · JPG, PNG, WebP · up to 10 MB</p>
+
         <div className={styles.buttonRow}>
           <button
             type="button"
             className={styles.btn}
             disabled={disabled}
+            aria-label="Browse for an image file"
             onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); }}
           >
-            📁 Browse File
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"/>
+            </svg>
+            Browse File
           </button>
           <button
             type="button"
-            className={`${styles.btn} ${styles.cameraBtn}`}
+            className={styles.btn}
             disabled={disabled}
+            aria-label="Use device camera to take a photo"
             onClick={(e) => { e.stopPropagation(); cameraInputRef.current?.click(); }}
           >
-            📷 Use Camera
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fillRule="evenodd" d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A2 2 0 0011.172 3H8.828a2 2 0 00-1.414.586L6.293 4.707A1 1 0 015.586 5H4zm6 9a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd"/>
+            </svg>
+            Use Camera
           </button>
         </div>
       </div>
@@ -139,6 +164,8 @@ export default function ImageUploader({ onImageSelected, onError, disabled }) {
         type="file"
         accept="image/jpeg,image/png,image/webp,image/gif,image/bmp"
         className={styles.hiddenInput}
+        aria-hidden="true"
+        tabIndex={-1}
         onChange={(e) => handleFile(e.target.files[0])}
       />
       <input
@@ -147,6 +174,8 @@ export default function ImageUploader({ onImageSelected, onError, disabled }) {
         accept="image/*"
         capture="environment"
         className={styles.hiddenInput}
+        aria-hidden="true"
+        tabIndex={-1}
         onChange={(e) => handleFile(e.target.files[0])}
       />
     </div>
